@@ -1,5 +1,5 @@
 import { Alert, Button } from "@metrostar/comet-uswds";
-import { UsaAccordion, UsaBanner, UsaFooter } from "@nava/make-kit-comet";
+import { UsaAccordion, UsaBanner, UsaFooter } from "@slowbot/make-kit-comet";
 import "./styles/index.css";
 
 /**
@@ -44,7 +44,7 @@ export default function App() {
           <p className="usa-intro">
             Demonstrates comet&apos;s Alert and Button components themed with
             the Simpler Grants USWDS theme. Banner and accordion use the
-            raw-USWDS wrappers from <code>@nava/make-kit-comet</code>.
+            raw-USWDS wrappers from <code>@slowbot/make-kit-comet</code>.
           </p>
 
           <h2>Alert (comet)</h2>

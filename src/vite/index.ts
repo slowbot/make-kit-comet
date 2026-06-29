@@ -41,7 +41,7 @@ export interface CometMakeKitOptions {
  * ```ts
  * import { defineConfig } from "vite";
  * import react from "@vitejs/plugin-react";
- * import { cometMakeKit } from "@nava/make-kit-comet/vite";
+ * import { cometMakeKit } from "@slowbot/make-kit-comet/vite";
  *
  * export default defineConfig({
  *   plugins: [react(), cometMakeKit()],

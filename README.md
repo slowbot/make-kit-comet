@@ -1,4 +1,4 @@
-# @nava/make-kit-comet
+# @slowbot/make-kit-comet
 
 > Runtime for the GDS Make Kit (Comet edition). Make-sandbox Vite shim, raw USWDS wrappers, and the Simpler Grants theme bundled as the default. Theme-agnostic: future programs ship CSS-only sibling packages.
 
@@ -13,10 +13,8 @@ Built for [Figma Make](https://www.figma.com/make/) projects (and any other Vite
 
 ## Install
 
-This package is currently distributed via tagged GitHub releases (not yet published to npmjs.com). Add it as a github-tag dependency:
-
 ```bash
-npm install github:slowbot/make-kit-comet#v0.1.0 @uswds/uswds @metrostar/comet-uswds
+npm install @slowbot/make-kit-comet @uswds/uswds @metrostar/comet-uswds
 ```
 
 Or pin in `package.json`:
@@ -24,14 +22,16 @@ Or pin in `package.json`:
 ```json
 {
   "dependencies": {
-    "@nava/make-kit-comet": "github:slowbot/make-kit-comet#v0.1.0",
+    "@slowbot/make-kit-comet": "^0.2.0",
     "@uswds/uswds": "^3.13.0",
     "@metrostar/comet-uswds": "^3.9.0"
   }
 }
 ```
 
-The package's `prepare` script runs `tsup` + `lightningcss` at install time, so the consumer's `node_modules/@nava/make-kit-comet/dist/` and `node_modules/@nava/make-kit-comet/styles/simpler/simpler-uswds.min.css` are generated on first install. After that, imports work identically to a published npm package.
+The package ships with `dist/` and `styles/simpler/simpler-uswds.min.css` pre-built in the tarball, so install is a normal npm-registry resolution — no build step runs on the consumer's machine.
+
+For consumers who can't reach npmjs.com (rare) but can reach GitHub, the package is also installable from the matching tag: `npm install github:slowbot/make-kit-comet#v0.2.0`. That path triggers the `prepare` script to build dist on install. Prefer the npm registry install for any sandboxed environment (Figma Make, CI, etc.).
 
 ## Use
 
@@ -39,7 +39,7 @@ The package's `prepare` script runs `tsup` + `lightningcss` at install time, so 
 // vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { cometMakeKit } from "@nava/make-kit-comet/vite";
+import { cometMakeKit } from "@slowbot/make-kit-comet/vite";
 
 export default defineConfig({
   plugins: [react(), cometMakeKit()],
@@ -48,12 +48,12 @@ export default defineConfig({
 
 ```css
 /* src/styles/index.css */
-@import "@nava/make-kit-comet/styles";
+@import "@slowbot/make-kit-comet/styles";
 ```
 
 ```tsx
 // anywhere
-import { UsaBanner, UsaAccordion, UsaFooter } from "@nava/make-kit-comet";
+import { UsaBanner, UsaAccordion, UsaFooter } from "@slowbot/make-kit-comet";
 import { Alert, Button } from "@metrostar/comet-uswds";
 
 export default function App() {
@@ -80,16 +80,16 @@ export default function App() {
 
 | Import path | What it loads |
 |---|---|
-| `@nava/make-kit-comet/styles` | Default = Simpler theme, minified |
-| `@nava/make-kit-comet/styles/dev` | Default theme, **unminified** for DevTools / grep |
-| `@nava/make-kit-comet/styles/simpler` | Simpler theme explicitly, minified |
-| `@nava/make-kit-comet/styles/simpler/dev` | Simpler theme explicitly, unminified |
+| `@slowbot/make-kit-comet/styles` | Default = Simpler theme, minified |
+| `@slowbot/make-kit-comet/styles/dev` | Default theme, **unminified** for DevTools / grep |
+| `@slowbot/make-kit-comet/styles/simpler` | Simpler theme explicitly, minified |
+| `@slowbot/make-kit-comet/styles/simpler/dev` | Simpler theme explicitly, unminified |
 
 To use a different theme later, install a sibling theme package and change one line:
 
 ```css
 /* swap from Simpler default to another program's theme */
-@import "@nava/make-kit-comet-theme-<program>/styles";
+@import "@slowbot/make-kit-comet-theme-<program>/styles";
 ```
 
 See [THEMES.md](./THEMES.md) for the sibling-theme-package contract.
@@ -123,6 +123,4 @@ See [THEMES.md](./THEMES.md).
 
 ## License
 
-UNLICENSED for now — license decision pending project sponsor. Treat this package as internal/experimental until that's resolved.
-
-Note: even though the source is publicly visible on GitHub (so the github-install path and jsDelivr-GH CDN can reach it), UNLICENSED means there is no granted right to use the code. If you're outside the originating organization and want to use this in a real project, ask before doing so.
+[MIT](./LICENSE). Use freely; attribution appreciated.

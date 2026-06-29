@@ -1,11 +1,11 @@
-/* @nava/make-kit-comet — consumer-side style entry.
+/* @slowbot/make-kit-comet — consumer-side style entry.
  *
  * Loads the bundled Simpler Grants theme (the default for this package).
  *
  * To swap themes in the future:
- *   1. `npm install @nava/make-kit-comet-theme-<program>`
+ *   1. `npm install @slowbot/make-kit-comet-theme-<program>`
  *   2. Replace the @import below with:
- *      @import "@nava/make-kit-comet-theme-<program>/styles";
+ *      @import "@slowbot/make-kit-comet-theme-<program>/styles";
  *
  * DO NOT import @uswds/uswds/dist/css/uswds.min.css. The Simpler bundle
  * already contains USWDS; loading vanilla USWDS on top will paint stock
@@ -14,4 +14,4 @@
  * DO NOT add @tailwind directives here. The kit forbids Tailwind/shadcn.
  */
 
-@import "@nava/make-kit-comet/styles";
+@import "@slowbot/make-kit-comet/styles";

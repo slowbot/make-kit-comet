@@ -1,6 +1,6 @@
 {
-  "name": "@nava/make-kit-comet",
-  "version": "0.1.0",
+  "name": "@slowbot/make-kit-comet",
+  "version": "0.2.0",
   "description": "Runtime for the GDS Make Kit (Comet edition). Make-sandbox Vite shim, raw USWDS wrappers (gov banner, accordion, footer), and the Simpler Grants theme bundled as the default. Theme-agnostic: future programs ship CSS-only sibling packages.",
   "keywords": [
     "uswds",
@@ -10,7 +10,7 @@
     "design-system",
     "vite-plugin"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "sideEffects": [
     "*.css"
@@ -44,7 +44,8 @@
     "templates",
     "README.md",
     "INSTALL.md",
-    "THEMES.md"
+    "THEMES.md",
+    "LICENSE"
   ],
   "scripts": {
     "prebuild": "lightningcss --minify styles/simpler/simpler-uswds.css -o styles/simpler/simpler-uswds.min.css",

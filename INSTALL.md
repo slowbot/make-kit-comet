@@ -1,6 +1,6 @@
 # Manual install — non-Figma-Make Vite projects
 
-This document covers installing `@nava/make-kit-comet` into a plain local Vite + React project (or any other Vite-compatible scaffold). If you're working in **Figma Make**, use the `/install-simpler-runtime` skill instead — it does all of this in one slash command.
+This document covers installing `@slowbot/make-kit-comet` into a plain local Vite + React project (or any other Vite-compatible scaffold). If you're working in **Figma Make**, use the `/install-simpler-runtime` skill instead — it does all of this in one slash command.
 
 ## Prerequisites
 
@@ -9,15 +9,13 @@ This document covers installing `@nava/make-kit-comet` into a plain local Vite +
 
 ## Step 1 — install packages
 
-This package is currently distributed via tagged GitHub releases (not yet published to npmjs.com):
-
 ```bash
-npm install github:slowbot/make-kit-comet#v0.1.0 @uswds/uswds @metrostar/comet-uswds
+npm install @slowbot/make-kit-comet @uswds/uswds @metrostar/comet-uswds
 ```
 
-The first installs this package directly from a public GitHub tag; the latter two are peer dependencies (Vite resolves them at build time).
+The first is this package (from the npm registry); the latter two are peer dependencies (Vite resolves them at build time).
 
-`npm` clones the tag, runs the package's `prepare` script (which executes `tsup` + `lightningcss` against the cloned source), and places the built output in your `node_modules/@nava/make-kit-comet/`. First install takes ~20s longer than a normal npm-registry install; subsequent installs use the lockfile-pinned commit SHA and are cached normally.
+For consumers without npm-registry access but with GitHub access (rare), the package is also installable from the matching tag: `npm install github:slowbot/make-kit-comet#v0.2.0`. The npm-registry path is faster and works in sandboxed environments (Figma Make, restrictive CI) where GitHub edge-routing is unreliable.
 
 ## Step 2 — wire the Vite plugin
 
@@ -26,7 +24,7 @@ Replace your `vite.config.ts` with the template from this package, or merge `com
 ```ts
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import { cometMakeKit } from "@nava/make-kit-comet/vite";
+import { cometMakeKit } from "@slowbot/make-kit-comet/vite";
 
 export default defineConfig({
   plugins: [react(), cometMakeKit()],
@@ -45,7 +43,7 @@ If you intentionally don't want any of them, pass `cometMakeKit({ disable: ["...
 Create `src/styles/index.css`:
 
 ```css
-@import "@nava/make-kit-comet/styles";
+@import "@slowbot/make-kit-comet/styles";
 ```
 
 Then import it from your app entry (`src/main.tsx`):
@@ -58,13 +56,13 @@ That single import loads:
 - The precompiled Simpler theme bundle (`simpler-uswds.min.css`, ~800 KB unminified-source).
 - The Google Fonts font-family override layer (`fonts.css`).
 
-For DevTools-friendly debugging of the bundled CSS rules, swap to `@nava/make-kit-comet/styles/dev` to load the unminified variant. Then revert before deploying.
+For DevTools-friendly debugging of the bundled CSS rules, swap to `@slowbot/make-kit-comet/styles/dev` to load the unminified variant. Then revert before deploying.
 
 ## Step 4 — use the components
 
 ```tsx
 import { Alert, Button } from "@metrostar/comet-uswds";
-import { UsaAccordion, UsaBanner, UsaFooter } from "@nava/make-kit-comet";
+import { UsaAccordion, UsaBanner, UsaFooter } from "@slowbot/make-kit-comet";
 
 export default function App() {
   return (
@@ -107,7 +105,7 @@ If you scaffolded from a template that included Tailwind or shadcn, follow the e
 | Buttons are USWDS blue, not mint | `simpler-uswds.css` not loaded, OR vanilla `@uswds/uswds/dist/css/uswds.min.css` got imported on top. Check `src/styles/index.css`. |
 | Gov banner flag is blank | You replaced `<UsaBanner />` with comet's `<Banner />`. Restore `<UsaBanner />` (see the source kit's [MAKE-SANDBOX-WORKAROUNDS.md](https://github.com/slowbot/sandbox/blob/main/design-library-experiment/make-kit-comet/MAKE-SANDBOX-WORKAROUNDS.md) for why). |
 | Accordion has no +/− chevrons | Same — you replaced `<UsaAccordion />` with comet's `<Accordion />`. Restore. |
-| Body text is Helvetica / Times | `fonts.css` didn't load. Check that you imported `@nava/make-kit-comet/styles` (not just the `simpler-uswds.css` file directly). |
+| Body text is Helvetica / Times | `fonts.css` didn't load. Check that you imported `@slowbot/make-kit-comet/styles` (not just the `simpler-uswds.css` file directly). |
 | `Cannot find module '@uswds/uswds/js/usa-accordion'` | `@uswds/uswds` not installed. Run `npm install @uswds/uswds`. |
 | `Property 'id' is required` TypeScript error on a comet component | comet requires `id` on every component. Add it. |
 | 404 on `/uswds/img/sprite.svg` in the console | `cometMakeKit()` is missing from `vite.config.ts`. Add it back. |

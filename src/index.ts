@@ -1,5 +1,5 @@
 /**
- * @nava/make-kit-comet — GDS Make Kit (Comet edition) runtime.
+ * @slowbot/make-kit-comet — GDS Make Kit (Comet edition) runtime.
  *
  * Theme-agnostic React + Vite runtime for Figma Make projects built on
  * `@metrostar/comet-uswds`. Ships:
@@ -12,7 +12,7 @@
  *     (see `./styles`).
  *
  * For other programs, ship a sibling theme package
- * (`@nava/make-kit-comet-theme-<program>`) that satisfies the contract
+ * (`@slowbot/make-kit-comet-theme-<program>`) that satisfies the contract
  * documented in THEMES.md.
  */
 

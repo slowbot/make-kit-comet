@@ -1,4 +1,4 @@
-# Theme contract for `@nava/make-kit-comet`
+# Theme contract for `@slowbot/make-kit-comet`
 
 This package ships the **Simpler Grants theme** as the bundled default. Future programs can ship their own theme as a **CSS-only sibling package** without re-implementing the Make-sandbox shim, the raw-USWDS wrappers, or any of the other runtime infrastructure here.
 
@@ -9,25 +9,25 @@ This file documents the contract a sibling theme package must satisfy.
 ```
 @metrostar/comet-uswds          ← upstream React + USWDS (peer dep)
         ↑
-@nava/make-kit-comet            ← this package
+@slowbot/make-kit-comet            ← this package
                                   • cometMakeKit() Vite plugin
                                   • UsaBanner / UsaAccordion / UsaFooter / icons
                                   • Bundled default theme: Simpler
         ↑                        ↑                            ↑
-(uses Simpler default)   @nava/make-kit-comet-theme-<prog2>   @nava/make-kit-comet-theme-<prog3>
+(uses Simpler default)   @slowbot/make-kit-comet-theme-<prog2>   @slowbot/make-kit-comet-theme-<prog3>
                                   CSS-only sibling packages
 ```
 
 ## Naming convention
 
 ```
-@nava/make-kit-comet-theme-<program-slug>
+@slowbot/make-kit-comet-theme-<program-slug>
 ```
 
 Examples:
-- `@nava/make-kit-comet-theme-medicare`
-- `@nava/make-kit-comet-theme-va-benefits`
-- `@nava/make-kit-comet-theme-cms-marketplace`
+- `@slowbot/make-kit-comet-theme-medicare`
+- `@slowbot/make-kit-comet-theme-va-benefits`
+- `@slowbot/make-kit-comet-theme-cms-marketplace`
 
 Use a stable, lowercase, hyphenated `<program-slug>`. Don't change it after the first publish — downstream consumers' `package.json` and `index.css` will reference it.
 
@@ -52,7 +52,7 @@ Mirror the layout this package uses for the `simpler/` directory — same filena
 ```json
 {
   "peerDependencies": {
-    "@nava/make-kit-comet": "^1"
+    "@slowbot/make-kit-comet": "^1"
   }
 }
 ```
@@ -61,8 +61,8 @@ Theme packages depend on this package for the React wrappers and Vite plugin. Th
 
 ## What a theme package MUST NOT export
 
-- React components — always come from `@nava/make-kit-comet`.
-- A Vite plugin — always comes from `@nava/make-kit-comet/vite`.
+- React components — always come from `@slowbot/make-kit-comet`.
+- A Vite plugin — always comes from `@slowbot/make-kit-comet/vite`.
 - A `<theme>` JS API of any kind. The contract is CSS-only. If a theme needs JS-level overrides, surface them as new optional props on the wrappers in this package (so all themes benefit).
 
 ## Build pipeline
@@ -83,10 +83,10 @@ A consumer that installed both packages swaps the theme by changing one `@import
 
 ```css
 /* default — Simpler */
-@import "@nava/make-kit-comet/styles";
+@import "@slowbot/make-kit-comet/styles";
 
 /* swap to another program */
-@import "@nava/make-kit-comet-theme-<program>/styles";
+@import "@slowbot/make-kit-comet-theme-<program>/styles";
 ```
 
 No Vite config change. No JS code change. The wrappers and the Vite plugin keep working identically — they're theme-agnostic.
@@ -101,9 +101,9 @@ Everything else is identical. See the source kit's `skills/README.md` for the up
 
 ## Versioning
 
-Theme packages version independently from `@nava/make-kit-comet`. Both follow semver. Coordinate major-version bumps:
+Theme packages version independently from `@slowbot/make-kit-comet`. Both follow semver. Coordinate major-version bumps:
 
-- A `@nava/make-kit-comet@2.0.0` that changes the wrapper API (e.g., renames a prop) likely requires no theme-package change (themes are CSS-only).
+- A `@slowbot/make-kit-comet@2.0.0` that changes the wrapper API (e.g., renames a prop) likely requires no theme-package change (themes are CSS-only).
 - A theme bundle rebuild from new USWDS source (e.g., USWDS 4) lives in the theme package's own major bump.
 
 ## Reference implementation
@@ -111,8 +111,8 @@ Theme packages version independently from `@nava/make-kit-comet`. Both follow se
 The Simpler theme bundled inside this package IS the reference implementation. To author a new theme package, scaffold a repo with:
 
 ```
-@nava/make-kit-comet-theme-<program>/
-├── package.json                 (peer-dep on @nava/make-kit-comet, files: ["styles"])
+@slowbot/make-kit-comet-theme-<program>/
+├── package.json                 (peer-dep on @slowbot/make-kit-comet, files: ["styles"])
 ├── README.md
 └── styles/
     ├── index.css
