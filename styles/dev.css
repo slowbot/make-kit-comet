@@ -1,0 +1,8 @@
+/* @nava/make-kit-comet — dev / readable convenience entry (Simpler theme).
+ *
+ * `@import "@nava/make-kit-comet/styles/dev"` resolves here. Loads the
+ * unminified Simpler bundle so you can read / grep the rules in DevTools.
+ * For production / Make preview, prefer `@nava/make-kit-comet/styles`.
+ */
+
+@import "./simpler/dev.css";

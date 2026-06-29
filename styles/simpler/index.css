@@ -1,0 +1,17 @@
+/* @nava/make-kit-comet — Simpler Grants theme entry (production / default).
+ *
+ * Loads the minified Simpler-themed USWDS bundle followed by the Google
+ * Fonts font-family override layer. This is what `@nava/make-kit-comet/styles`
+ * resolves to.
+ *
+ * For a readable, source-form CSS bundle (helpful when debugging the
+ * Simpler theme in DevTools or grepping rules), use the dev variant:
+ *   @import "@nava/make-kit-comet/styles/simpler/dev";
+ *
+ * Load order is load-bearing: fonts.css MUST come AFTER simpler-uswds.css.
+ * The font-family overrides intentionally win against the rules baked into
+ * the precompiled bundle, which requires later source order.
+ */
+
+@import "./simpler-uswds.min.css";
+@import "./fonts.css";

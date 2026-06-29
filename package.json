@@ -1,0 +1,97 @@
+{
+  "name": "@nava/make-kit-comet",
+  "version": "0.1.0",
+  "description": "Runtime for the GDS Make Kit (Comet edition). Make-sandbox Vite shim, raw USWDS wrappers (gov banner, accordion, footer), and the Simpler Grants theme bundled as the default. Theme-agnostic: future programs ship CSS-only sibling packages.",
+  "keywords": [
+    "uswds",
+    "comet",
+    "figma-make",
+    "simpler-grants",
+    "design-system",
+    "vite-plugin"
+  ],
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./vite": {
+      "types": "./dist/vite/index.d.ts",
+      "import": "./dist/vite/index.js",
+      "require": "./dist/vite/index.cjs"
+    },
+    "./styles": "./styles/index.css",
+    "./styles/dev": "./styles/dev.css",
+    "./styles/simpler": "./styles/simpler/index.css",
+    "./styles/simpler/dev": "./styles/simpler/dev.css",
+    "./styles/simpler/simpler-uswds.css": "./styles/simpler/simpler-uswds.css",
+    "./styles/simpler/simpler-uswds.min.css": "./styles/simpler/simpler-uswds.min.css",
+    "./styles/simpler/fonts.css": "./styles/simpler/fonts.css",
+    "./templates/*": "./templates/*"
+  },
+  "files": [
+    "dist",
+    "styles",
+    "templates",
+    "README.md",
+    "INSTALL.md",
+    "THEMES.md"
+  ],
+  "scripts": {
+    "prebuild": "lightningcss --minify styles/simpler/simpler-uswds.css -o styles/simpler/simpler-uswds.min.css",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "verify": "bash scripts/verify-bundle.sh",
+    "clean": "rm -rf dist styles/simpler/simpler-uswds.min.css",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessejames/make-kit-comet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jessejames/make-kit-comet/issues"
+  },
+  "homepage": "https://github.com/jessejames/make-kit-comet#readme",
+  "peerDependencies": {
+    "@metrostar/comet-uswds": "^3.9",
+    "@uswds/uswds": "^3.13",
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19",
+    "vite": "^5 || ^6"
+  },
+  "peerDependenciesMeta": {
+    "@metrostar/comet-uswds": { "optional": true },
+    "vite": { "optional": true }
+  },
+  "dependencies": {
+    "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "lightningcss-cli": "^1.28.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

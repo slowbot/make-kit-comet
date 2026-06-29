@@ -1,0 +1,3 @@
+# package.json "files" governs what ships. This file exists only to prevent
+# the default behavior where .gitignore is treated as .npmignore (which would
+# exclude the generated styles/simpler/simpler-uswds.min.css from the tarball).

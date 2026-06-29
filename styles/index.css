@@ -1,0 +1,15 @@
+/* @nava/make-kit-comet — default convenience entry (Simpler theme).
+ *
+ * `@import "@nava/make-kit-comet/styles"` resolves here. This file is a
+ * thin re-export of the bundled Simpler Grants theme — the default for
+ * this package. To swap to a different theme in the future:
+ *
+ *   1. Install a sibling theme package, e.g.
+ *      `npm install @nava/make-kit-comet-theme-<program>`
+ *   2. Replace this @import in your own src/styles/index.css with
+ *      `@import "@nava/make-kit-comet-theme-<program>/styles";`
+ *
+ * See THEMES.md for the sibling-theme-package contract.
+ */
+
+@import "./simpler/index.css";

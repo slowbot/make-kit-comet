@@ -1,0 +1,107 @@
+/* GDS Make Kit — Comet edition
+ * Font source + family override layer.
+ *
+ * Why this file exists
+ * --------------------
+ * `simpler-uswds.css` (the precompiled USWDS + Simpler theme bundle in
+ * `assets/simpler-uswds.css`) ships with @font-face blocks that point at
+ * local font files via relative URLs:
+ *
+ *   @font-face { font-family: "Public Sans Web"; src: url("../fonts/public-sans/PublicSans-Regular.woff2") ... }
+ *   @font-face { font-family: "Roboto Mono Web"; src: url("../fonts/roboto-mono/RobotoMono-Regular.woff2") ... }
+ *
+ * Those paths resolve correctly in a normal Vite project, but Figma Make's
+ * preview sandbox does not reliably serve the bundled font files. The
+ * requests 404 and the browser falls back to Helvetica / system-ui — which
+ * is what was happening before this file existed.
+ *
+ * Fix: load the same families from fonts.googleapis.com (which IS reachable
+ * from inside Make's sandbox) and override the `font-family` declarations
+ * in simpler-uswds.css to prefer Google's family names ("Public Sans",
+ * "Roboto Mono") over the local-bundle names ("Public Sans Web",
+ * "Roboto Mono Web").
+ *
+ * Why not alias families via @font-face { src: local(...) }?
+ * ----------------------------------------------------------
+ * Because `local()` only resolves to fonts installed at the OS level. It
+ * does NOT find a family that another @font-face block or @import has
+ * registered in the same document. So aliasing "Public Sans Web" onto a
+ * `local("Public Sans")` lookup silently no-ops in Make's sandbox (where
+ * Public Sans is not OS-installed). The override approach below works
+ * regardless of OS-installed fonts.
+ *
+ * IMPORTANT — load order
+ * ----------------------
+ * This file MUST be imported AFTER `simpler-uswds.css` in `index.css`.
+ * The CSS overrides at the bottom intentionally win against the rules
+ * baked into the precompiled bundle, which requires later source order.
+ *
+ * IMPORTANT — @import position
+ * ----------------------------
+ * CSS @import rules MUST be the first non-comment rules in a stylesheet.
+ * Do not add @font-face, variables, or any other rule above the @import
+ * line — browsers will silently ignore the import and the fonts will fall
+ * back to Helvetica again.
+ *
+ * If you change the font source
+ * -----------------------------
+ * Update the @import URL AND the `font-family` stack in the overrides
+ * below together. The first family in each stack must match the family
+ * name Google Fonts publishes ("Public Sans", "Roboto Mono"). The fallback
+ * chain after that is unchanged from USWDS's default. See
+ * MAKE-SANDBOX-WORKAROUNDS.md → "Fonts" for the full story.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&family=Roboto+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap");
+
+/* Sans (body, UI, headings) — prefer Google's "Public Sans" over the
+ * "Public Sans Web" family that simpler-uswds.css's bundled @font-face
+ * blocks reference (and fail to load) inside Make's sandbox. */
+:root,
+html,
+body,
+input,
+select,
+textarea,
+button,
+.usa-prose,
+.usa-prose > *,
+[class*="usa-"],
+[class*="font-sans"],
+[class*="font-ui"],
+[class*="font-heading"],
+[class*="font-body"] {
+  font-family:
+    "Public Sans",
+    "Public Sans Web",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji" !important;
+}
+
+/* Mono (code, kbd, pre, samp, USWDS code-styled prose) — prefer Google's
+ * "Roboto Mono" over the "Roboto Mono Web" family. */
+code,
+kbd,
+pre,
+samp,
+.usa-prose code,
+.usa-prose kbd,
+.usa-prose pre,
+.usa-prose samp,
+[class*="font-mono"] {
+  font-family:
+    "Roboto Mono",
+    "Roboto Mono Web",
+    "Bitstream Vera Sans Mono",
+    Consolas,
+    "Andale Mono",
+    "Lucida Console",
+    Monaco,
+    monospace !important;
+}

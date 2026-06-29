@@ -1,0 +1,11 @@
+/* @nava/make-kit-comet — Simpler Grants theme entry (dev / readable).
+ *
+ * Same as `./index.css` but loads the unminified bundle. Use this when
+ * debugging the Simpler theme rules in DevTools or grepping the bundled
+ * CSS source. For production / Make preview, prefer `./index.css`.
+ *
+ * Load order is load-bearing: fonts.css MUST come AFTER simpler-uswds.css.
+ */
+
+@import "./simpler-uswds.css";
+@import "./fonts.css";
