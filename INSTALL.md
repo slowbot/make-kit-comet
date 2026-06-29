@@ -12,7 +12,7 @@ This document covers installing `@nava/make-kit-comet` into a plain local Vite +
 This package is currently distributed via tagged GitHub releases (not yet published to npmjs.com):
 
 ```bash
-npm install github:jessejames/make-kit-comet#v0.1.0 @uswds/uswds @metrostar/comet-uswds
+npm install github:slowbot/make-kit-comet#v0.1.0 @uswds/uswds @metrostar/comet-uswds
 ```
 
 The first installs this package directly from a public GitHub tag; the latter two are peer dependencies (Vite resolves them at build time).
@@ -95,7 +95,7 @@ export default function App() {
 
 ## Step 6 (optional) — neutralize Tailwind / shadcn scaffold
 
-If you scaffolded from a template that included Tailwind or shadcn, follow the empty-with-sentinel pattern from the source kit's [`INSTALL.md` Phase 2](https://github.com/jessejames/sandbox/blob/main/design-library-experiment/make-kit-comet/kit-templates/INSTALL.md). Short version:
+If you scaffolded from a template that included Tailwind or shadcn, follow the empty-with-sentinel pattern from the source kit's [`INSTALL.md` Phase 2](https://github.com/slowbot/sandbox/blob/main/design-library-experiment/make-kit-comet/kit-templates/INSTALL.md). Short version:
 
 - Empty (don't delete) `src/styles/tailwind.css`, `src/styles/theme.css`, `src/styles/globals.css`, `postcss.config.mjs`, `tailwind.config.*`, `components.json` — each gets a sentinel comment that says "do not refill".
 - Remove `@tailwindcss/vite`, `tailwindcss`, `tw-animate-css`, `tailwind-merge`, `class-variance-authority`, `@radix-ui/*`, `lucide-react`, `cmdk`, `sonner`, `vaul`, `embla-carousel-react`, `framer-motion`, etc. from `package.json`.
@@ -105,7 +105,7 @@ If you scaffolded from a template that included Tailwind or shadcn, follow the e
 | Symptom | Fix |
 |---|---|
 | Buttons are USWDS blue, not mint | `simpler-uswds.css` not loaded, OR vanilla `@uswds/uswds/dist/css/uswds.min.css` got imported on top. Check `src/styles/index.css`. |
-| Gov banner flag is blank | You replaced `<UsaBanner />` with comet's `<Banner />`. Restore `<UsaBanner />` (see the source kit's [MAKE-SANDBOX-WORKAROUNDS.md](https://github.com/jessejames/sandbox/blob/main/design-library-experiment/make-kit-comet/MAKE-SANDBOX-WORKAROUNDS.md) for why). |
+| Gov banner flag is blank | You replaced `<UsaBanner />` with comet's `<Banner />`. Restore `<UsaBanner />` (see the source kit's [MAKE-SANDBOX-WORKAROUNDS.md](https://github.com/slowbot/sandbox/blob/main/design-library-experiment/make-kit-comet/MAKE-SANDBOX-WORKAROUNDS.md) for why). |
 | Accordion has no +/− chevrons | Same — you replaced `<UsaAccordion />` with comet's `<Accordion />`. Restore. |
 | Body text is Helvetica / Times | `fonts.css` didn't load. Check that you imported `@nava/make-kit-comet/styles` (not just the `simpler-uswds.css` file directly). |
 | `Cannot find module '@uswds/uswds/js/usa-accordion'` | `@uswds/uswds` not installed. Run `npm install @uswds/uswds`. |

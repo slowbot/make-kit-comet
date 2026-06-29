@@ -73,7 +73,7 @@ The theme bundle is the precompiled output of:
 2. Your program's `_uswds-theme-custom-styles.scss` (component overrides on top of USWDS).
 3. The full USWDS source.
 
-…compiled to a single browser-ready CSS file. The build chain currently used for the Simpler theme bundle lives in [`design-library-experiment/make-kit-comet/scripts/build-comet-kit-css.sh`](https://github.com/jessejames/sandbox/blob/main/design-library-experiment/make-kit-comet/scripts/build-comet-kit-css.sh) in the source kit. You can adapt that script for your program by pointing it at your theme SCSS.
+…compiled to a single browser-ready CSS file. The build chain currently used for the Simpler theme bundle lives in [`design-library-experiment/make-kit-comet/scripts/build-comet-kit-css.sh`](https://github.com/slowbot/sandbox/blob/main/design-library-experiment/make-kit-comet/scripts/build-comet-kit-css.sh) in the source kit (link assumes the sandbox itself gets pushed to GitHub under the same handle; until then, reference the local file). You can adapt that script for your program by pointing it at your theme SCSS.
 
 The minified `*.min.css` is the same content run through `lightningcss-cli --minify`. See this package's `prebuild` script for the exact invocation.
 

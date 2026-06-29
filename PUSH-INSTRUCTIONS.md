@@ -7,7 +7,7 @@ The package is built, committed locally, and ready to push. Three steps total.
 In a browser, open https://github.com/new and fill in:
 
 - **Repository name**: `make-kit-comet`
-- **Owner**: `jessejames` (your personal account)
+- **Owner**: `slowbot` (your personal account)
 - **Visibility**: **Public** (required so jsDelivr-GH can serve files + `npm install github:...` can clone)
 - **DO NOT** initialize with README, .gitignore, or LICENSE — we already have those committed locally
 
@@ -26,7 +26,7 @@ git -c user.name="$(git config --global user.name)" \
     commit --amend --no-edit --reset-author
 
 # Add the remote
-git remote add origin https://github.com/jessejames/make-kit-comet.git
+git remote add origin https://github.com/slowbot/make-kit-comet.git
 
 # Push main
 git push -u origin main
@@ -41,9 +41,9 @@ git push origin v0.1.0
 jsDelivr's GitHub mirror picks up new tags within seconds. After pushing, run:
 
 ```bash
-curl -sI https://cdn.jsdelivr.net/gh/jessejames/make-kit-comet@v0.1.0/templates/vite.config.ts | head -3
-curl -sI https://cdn.jsdelivr.net/gh/jessejames/make-kit-comet@v0.1.0/templates/src-styles-index.css | head -3
-curl -sI https://cdn.jsdelivr.net/gh/jessejames/make-kit-comet@v0.1.0/templates/App.tsx | head -3
+curl -sI https://cdn.jsdelivr.net/gh/slowbot/make-kit-comet@v0.1.0/templates/vite.config.ts | head -3
+curl -sI https://cdn.jsdelivr.net/gh/slowbot/make-kit-comet@v0.1.0/templates/src-styles-index.css | head -3
+curl -sI https://cdn.jsdelivr.net/gh/slowbot/make-kit-comet@v0.1.0/templates/App.tsx | head -3
 ```
 
 All three should return `HTTP/2 200`. If any return 403 / 404, wait ~30s and retry — jsDelivr's first-tag fetch can lag briefly.
@@ -52,7 +52,7 @@ All three should return `HTTP/2 200`. If any return 403 / 404, wait ~30s and ret
 
 Once the push is done and the three curls all return 200, let me know. I'll:
 
-1. Run a smoke test against the live URL (`npm install github:jessejames/make-kit-comet#v0.1.0` in a fresh test project, confirm the `prepare` script works end-to-end).
+1. Run a smoke test against the live URL (`npm install github:slowbot/make-kit-comet#v0.1.0` in a fresh test project, confirm the `prepare` script works end-to-end).
 2. Confirm the skill `.md` is ready for you to upload to Figma Make.
 3. Mark the project complete.
 
@@ -67,7 +67,7 @@ Once the push is done and the three curls all return 200, let me know. I'll:
 
 ## What this push gets you
 
-- Public `https://github.com/jessejames/make-kit-comet` browseable on GitHub
-- Tagged release `v0.1.0` that consumers can pin: `npm install github:jessejames/make-kit-comet#v0.1.0`
+- Public `https://github.com/slowbot/make-kit-comet` browseable on GitHub
+- Tagged release `v0.1.0` that consumers can pin: `npm install github:slowbot/make-kit-comet#v0.1.0`
 - jsDelivr-GH URLs that the `/install-simpler-runtime` skill fetches
 - A future migration path: when you get npm publish approval, run `npm publish` from the same checkout (the package.json is already set up for it) and update the skill to point at npm registry URLs

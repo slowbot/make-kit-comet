@@ -16,7 +16,7 @@ Built for [Figma Make](https://www.figma.com/make/) projects (and any other Vite
 This package is currently distributed via tagged GitHub releases (not yet published to npmjs.com). Add it as a github-tag dependency:
 
 ```bash
-npm install github:jessejames/make-kit-comet#v0.1.0 @uswds/uswds @metrostar/comet-uswds
+npm install github:slowbot/make-kit-comet#v0.1.0 @uswds/uswds @metrostar/comet-uswds
 ```
 
 Or pin in `package.json`:
@@ -24,7 +24,7 @@ Or pin in `package.json`:
 ```json
 {
   "dependencies": {
-    "@nava/make-kit-comet": "github:jessejames/make-kit-comet#v0.1.0",
+    "@nava/make-kit-comet": "github:slowbot/make-kit-comet#v0.1.0",
     "@uswds/uswds": "^3.13.0",
     "@metrostar/comet-uswds": "^3.9.0"
   }
@@ -107,7 +107,7 @@ After install + `npm run dev`, you should see:
 
 If buttons are USWDS blue, you're loading vanilla USWDS on top of Simpler. Check `src/styles/index.css` for a stray `@import "@uswds/uswds/dist/css/uswds.min.css"` and remove it.
 
-If the gov banner flag is missing or accordion chevrons don't render, you've replaced `<UsaBanner />` / `<UsaAccordion />` with comet's `<Banner />` / `<Accordion />`. Restore the wrappers. The full reasoning is in the source kit's [`MAKE-SANDBOX-WORKAROUNDS.md`](https://github.com/jessejames/sandbox/blob/main/design-library-experiment/make-kit-comet/MAKE-SANDBOX-WORKAROUNDS.md).
+If the gov banner flag is missing or accordion chevrons don't render, you've replaced `<UsaBanner />` / `<UsaAccordion />` with comet's `<Banner />` / `<Accordion />`. Restore the wrappers. The full reasoning is in the source kit's [`MAKE-SANDBOX-WORKAROUNDS.md`](https://github.com/slowbot/sandbox/blob/main/design-library-experiment/make-kit-comet/MAKE-SANDBOX-WORKAROUNDS.md) (link assumes the sandbox itself gets pushed to GitHub under the same handle; until then, reference the local file).
 
 ## Figma Make installer skill
 
