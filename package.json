@@ -1,6 +1,6 @@
 {
   "name": "@slowbot/make-kit-comet",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Runtime for the GDS Make Kit (Comet edition). Make-sandbox Vite shim, raw USWDS wrappers (gov banner, accordion, footer), and the Simpler Grants theme bundled as the default. Theme-agnostic: future programs ship CSS-only sibling packages.",
   "keywords": [
     "uswds",
